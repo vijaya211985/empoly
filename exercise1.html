@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouns Exercises - EM-Poly Prodigy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>EM-Poly Prodigy</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lessons.html">Lessons</a></li>
+                <li><a href="exercises.html">Exercises</a></li>
+                <li><a href="progress.html">Progress</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Nouns Exercises</h2>
+            <form id="nounExerciseForm">
+                <div>
+                    <p>1. Identify the noun in the following sentence: "The cat sat on the mat."</p>
+                    <label><input type="radio" name="q1" value="cat"> cat</label><br>
+                    <label><input type="radio" name="q1" value="sat"> sat</label><br>
+                    <label><input type="radio" name="q1" value="mat"> mat</label><br>
+                </div>
+                <button type="button" onclick="submitNounExercise()">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 EM-Poly Prodigy</p>
+    </footer>
+    <script>
+        function submitNounExercise() {
+            const form = document.getElementById('nounExerciseForm');
+            const answers = {
+                q1: 'cat'
+            };
+            let score = 0;
+            const formData = new FormData(form);
+            for (const [question, answer] of Object.entries(answers)) {
+                if (formData.get(question) === answer) {
+                    score++;
+                }
+            }
+            alert('Your score: ' + score);
+        }
+    </script>
+</body>
+</html>
