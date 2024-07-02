@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress - EM-Poly Prodigy</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>EM-Poly Prodigy</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lessons.html">Lessons</a></li>
+                <li><a href="exercises.html">Exercises</a></li>
+                <li><a href="progress.html">Progress</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Your Progress</h2>
+            <div>
+                <h3>Completed Lessons</h3>
+                <ul id="completedLessons">
+                    <!-- Completed lessons will be dynamically added here -->
+                </ul>
+            </div>
+            <div>
+                <h3>Your Scores</h3>
+                <canvas id="progressChart"></canvas>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 EM-Poly Prodigy</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mock data for demonstration purposes
+            const completedLessons = [
+                { title: 'Nouns', score: 8 },
+                { title: 'Verbs', score: 7 },
+                { title: 'Tenses', score: 9 }
+            ];
+
+            const lessonsList = document.getElementById('completedLessons');
+            completedLessons.forEach(lesson => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${lesson.title}: ${lesson.score} / 10`;
+                lessonsList.appendChild(listItem);
+            });
+
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: completedLessons.map(lesson => lesson.title),
+                    datasets: [{
+                        label: 'Scores',
+                        data: completedLessons.map(lesson => lesson.score),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
